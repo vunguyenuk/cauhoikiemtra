@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1d503e" />
+    <meta
+      name="description"
+      content="Tìm nhanh câu hỏi và đáp án bài kiểm tra Zentason bằng từ khóa. Hỗ trợ tiếng Việt có dấu, không dấu và xem ảnh tài liệu gốc."
+    />
+    <title>Sổ tay · Tra cứu bài kiểm tra</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="stylesheet" href="/assets/fonts.css" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#search">Đến ô tìm kiếm</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="./" aria-label="Sổ tay — trang chủ"
+          ><span class="brand-symbol" aria-hidden="true"
+            ><svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 4h14v17l-7-4-7 4V4Z" stroke="currentColor" stroke-width="1.7" />
+              <path
+                d="M9 8h6M9 11h4"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              /></svg></span
+          ><span>Sổ tay<span class="brand-caption">Tra cứu bài kiểm tra</span></span></a
+        >
+        <nav aria-label="Điều hướng chính">
+          <button class="nav-btn" id="saved-view" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" /></svg>Đã
+            lưu <span id="saved-count">0</span></button
+          ><button class="nav-btn upload-nav" id="open-upload">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 16V3m-5 5 5-5 5 5M4 15v6h16v-6" /></svg
+            >Thêm ảnh
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="account-bar">
+        <span id="account-status" role="status">Đang kiểm tra kết nối…</span
+        ><button id="open-auth" class="text-button" type="button">Đăng nhập</button
+        ><button id="sign-out" class="text-button" type="button" hidden>Đăng xuất</button>
+      </div>
+      <section id="auth-panel" class="auth-panel" aria-labelledby="auth-title" hidden>
+        <div class="upload-head">
+          <h2 id="auth-title">Đăng nhập để lưu dữ liệu</h2>
+          <button id="close-auth" class="icon-button" type="button" aria-label="Đóng đăng nhập">
+            ×
+          </button>
+        </div>
+        <p>
+          Dùng cùng một tài khoản trên điện thoại và máy tính. Tài khoản được chủ website tạo trong
+          Supabase.
+        </p>
+        <form id="auth-form" class="auth-form">
+          <label>Email<input id="auth-email" type="email" autocomplete="username" required /></label
+          ><label
+            >Mật khẩu<input
+              id="auth-password"
+              type="password"
+              autocomplete="current-password"
+              required /></label
+          ><button id="auth-submit" class="button primary" type="submit">Đăng nhập</button
+          ><span id="auth-status" class="auth-status" role="status"></span>
+        </form>
+      </section>
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Tra cứu câu hỏi và đáp án</h1>
+        <p>Nhập từ bạn nhớ trong bài kiểm tra để tìm nhanh.</p>
+      </section>
+      <section id="upload-panel" class="upload-panel" aria-labelledby="upload-title" hidden>
+        <div class="upload-head">
+          <div>
+            <h2 id="upload-title">Thêm ảnh bài kiểm tra</h2>
+            <p>Chọn ảnh, website tự đọc chữ và lưu để tìm lại sau.</p>
+          </div>
+          <button class="icon-button" id="close-upload" aria-label="Đóng phần tải ảnh">×</button>
+        </div>
+        <label class="dropzone" id="dropzone"
+          ><svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 16V3m-5 5 5-5 5 5M4 15v6h16v-6" /></svg
+          ><strong>Bấm vào đây để chọn ảnh</strong
+          ><span>Có thể chọn nhiều ảnh · JPG, PNG, WebP · Tối đa 15 MB/ảnh</span
+          ><input
+            id="image-input"
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            multiple
+            aria-label="Chọn ảnh để chuyển thành chữ"
+        /></label>
+        <p>
+          Dùng ảnh rõ chữ, chụp thẳng. Sau khi lưu, bạn có thể xem lại ảnh gốc và sửa chữ nếu cần.
+        </p>
+        <div class="progress-list" id="upload-progress" role="status" aria-live="polite"></div>
+        <div class="upload-tools">
+          <button class="button" id="refresh-data">Cập nhật dữ liệu</button>
+        </div>
+        <div class="sync-line" id="sync-status">
+          <span class="sync-dot"></span>Đang kết nối kho dữ liệu…
+        </div>
+      </section>
+      <section class="lookup" aria-label="Tìm kiếm câu hỏi">
+        <div class="search-sticky">
+          <form id="search-form" role="search">
+            <label class="sr-only" for="search">Tìm câu hỏi hoặc đáp án</label
+            ><svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5" />
+              <path d="m16 16 4.5 4.5" /></svg
+            ><input
+              id="search"
+              type="search"
+              placeholder="Nhập từ khóa cần tìm…"
+              autocomplete="off"
+              enterkeyhint="search"
+              spellcheck="false"
+            /><button
+              type="button"
+              class="clear-search"
+              id="clear-search"
+              aria-label="Xóa từ khóa"
+              hidden
+            >
+              ×
+            </button>
+          </form>
+          <p class="search-hint">Có thể gõ không dấu. Ví dụ: viem xoang, tre em.</p>
+        </div>
+        <div class="filter-bar">
+          <p class="filter-label">Chọn nhóm câu hỏi</p>
+          <div class="filters" role="group" aria-label="Lọc chủ đề">
+            <button class="filter active" id="all-view" data-category="Tất cả" aria-pressed="true">
+              Tất cả <span>8</span></button
+            ><button class="filter" data-category="Liều dùng" aria-pressed="false">
+              Liều dùng <span>5</span></button
+            ><button class="filter" data-category="Hoạt chất" aria-pressed="false">
+              Hoạt chất <span>2</span></button
+            ><button class="filter" data-category="Dạng bào chế" aria-pressed="false">
+              Dạng bào chế <span>1</span></button
+            ><button class="filter" data-category="Đã tải lên" aria-pressed="false">
+              Ảnh đã thêm <span>0</span>
+            </button>
+          </div>
+        </div>
+        <p id="data-notice" class="sync-line error-text" role="status" hidden></p>
+        <div class="results-heading">
+          <h2 id="results-title">Tất cả câu hỏi <span>08</span></h2>
+        </div>
+        <p id="result-announcement" class="sr-only" role="status" aria-live="polite"></p>
+        <div id="results" class="results"></div>
+        <noscript
+          ><p>
+            Vui lòng bật JavaScript để tìm kiếm và xem câu hỏi. Bạn có thể xem
+            <a href="./assets/IMG_0016.JPG">ảnh tài liệu gốc</a>.
+          </p></noscript
+        >
+      </section>
+      <footer>
+        <span class="footer-mark">Sổ tay bài kiểm tra</span>
+        <p>Ảnh và nội dung bạn thêm được lưu để dùng trên điện thoại và máy tính.</p>
+      </footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

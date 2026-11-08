@@ -1,0 +1,94 @@
+export const questions = [
+  {
+    id: 2,
+    category: 'Hoạt chất',
+    question: 'Thành phần hoạt chất trong Zentason là gì?',
+    options: ['Budesonid', 'Mometason furoat', 'Zentanid', 'Dexamethason'],
+    correct: 1,
+    source: 'IMG_0016.JPG',
+  },
+  {
+    id: 6,
+    category: 'Liều dùng',
+    question:
+      'Liều tối đa cho chỉ định viêm mũi dị ứng theo mùa/quanh năm trên người lớn và thanh thiếu niên của Zentason:',
+    options: [
+      '1 nhát xịt/mỗi bên mũi/ngày',
+      '2 nhát xịt/mỗi bên mũi/ngày',
+      '3 nhát xịt/mỗi bên mũi/ngày',
+      '4 nhát xịt/mỗi bên mũi/ngày',
+    ],
+    correct: 3,
+    source: 'IMG_0015.JPG',
+  },
+  {
+    id: 8,
+    category: 'Liều dùng',
+    question: 'Liều dùng thông thường của Zentason cho chỉ định viêm xoang cấp ở người lớn là:',
+    options: [
+      '50 mcg/mỗi bên mũi x 1 lần/ngày',
+      '50 mcg/mỗi bên mũi x 2 lần/ngày',
+      '100 mcg/mỗi bên mũi x 1 lần/ngày',
+      '100 mcg/mỗi bên mũi x 2 lần/ngày',
+    ],
+    correct: 3,
+    source: 'IMG_0014.JPG',
+  },
+  {
+    id: 10,
+    category: 'Liều dùng',
+    question: 'Liều dùng đề nghị thông thường cho polyp mũi của Zentason?',
+    options: [
+      '1 nhát xịt/mỗi bên mũi x 1 lần/ngày',
+      '1 nhát xịt/mỗi bên mũi x 2 lần/ngày',
+      '2 nhát xịt/mỗi bên mũi x 1 lần/ngày',
+      '2 nhát xịt/mỗi bên mũi x 2 lần/ngày',
+    ],
+    correct: 3,
+    source: 'IMG_0017.JPG',
+  },
+  {
+    id: 11,
+    category: 'Dạng bào chế',
+    question: 'Dạng bào chế của Zentason là gì?',
+    options: ['Dung dịch tiêm', 'Hỗn dịch khí dung', 'Hỗn dịch xịt mũi', 'Hỗn dịch xịt họng'],
+    correct: 2,
+    source: 'IMG_0020.JPG',
+  },
+  {
+    id: 13,
+    category: 'Hoạt chất',
+    question: 'Hoạt chất trong Zentason thuộc nhóm dược lý nào?',
+    options: ['Corticoid', 'NSAIDs', 'Kháng histamin', 'Kháng sinh beta lactam'],
+    correct: 0,
+    source: 'IMG_0018.JPG',
+  },
+  {
+    id: 23,
+    category: 'Liều dùng',
+    question:
+      'Liều đề nghị thông thường cho chỉ định viêm mũi dị ứng theo mùa/quanh năm trên trẻ em của Zentason?',
+    options: [
+      '1 nhát xịt/mỗi bên mũi/ngày',
+      '2 nhát xịt/mỗi bên mũi/ngày',
+      '3 nhát xịt/mỗi bên mũi/ngày',
+      '4 nhát xịt/mỗi bên mũi/ngày',
+    ],
+    correct: 0,
+    source: 'IMG_0019.JPG',
+  },
+  {
+    id: 25,
+    category: 'Liều dùng',
+    question:
+      'Liều dùng thông thường của Zentason cho chỉ định viêm mũi dị ứng theo mùa ở người lớn là:',
+    options: [
+      '1 nhát xịt/mỗi bên mũi x 1 lần/ngày',
+      '2 nhát xịt/mỗi bên mũi x 1 lần/ngày',
+      '1 nhát xịt/mỗi bên mũi x 3 lần/ngày',
+      '2 nhát xịt/mỗi bên mũi x 2 lần/ngày',
+    ],
+    correct: 1,
+    source: 'IMG_0013.JPG',
+  },
+];
